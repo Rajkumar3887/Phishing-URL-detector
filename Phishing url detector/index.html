@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PhishGuard AI | Complete Suite</title>
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@3.9.1/dist/chart.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="style.css">
+    </head>
+<body>
+    
+    <div class="bg-shift"></div>
+
+    <div id="page-landing" class="page-section">
+        <header>
+            <div class="header-container">
+                <div class="logo" onclick="navigateTo('landing')">PhishGuard</div>
+                <nav>
+                    <button onclick="scrollToId('features')">Features</button>
+                    <button onclick="scrollToId('about')">About</button>
+                    <button onclick="navigateTo('dashboard')">Dashboard</button>
+                    <button class="login-btn" onclick="navigateTo('login')">Login</button>
+                </nav>
+            </div>
+        </header>
+
+        <main>
+            <section class="hero">
+                <div class="hero-content">
+                    <div class="hero-text float-up">
+                        <h1>AI-Based <span>Phishing URL</span> Detector</h1>
+                        <p>Next-generation cybersecurity threat intelligence powered by advanced machine learning. Detect, analyze, and neutralize phishing attacks in real-time with unprecedented accuracy.</p>
+                        <button class="cta-btn" onclick="navigateTo('scanner')">Get Started Now</button>
+                    </div>
+                    <div class="hero-3d">
+                        <img src="phishing1.png" alt="Phishing hook" style="max-width: 100%; height: auto; filter: drop-shadow(0 0 25px rgba(61, 255, 61, 0.8)); border-radius: 18px; border: 1px solid rgba(61, 255, 61, 0.4);" />
+                    </div>
+                </div>
+            </section>
+
+            <section class="features" id="features">
+                <h2 class="section-title">Why Choose <span>PhishGuard</span></h2>
+                <div class="features-grid">
+                    <div class="feature-card glass-glow">
+                        <div class="feature-icon"><i class="fas fa-brain"></i></div>
+                        <div class="feature-title">AI-Powered Detection</div>
+                        <div class="feature-desc">Advanced machine learning models trained on millions of URLs for exceptional accuracy.</div>
+                    </div>
+                    <div class="feature-card glass-glow">
+                        <div class="feature-icon"><i class="fas fa-calendar"></i></div>
+                        <div class="feature-title">Domain Age Check</div>
+                        <div class="feature-desc">Analyze domain registration history to identify suspicious newly-created domains.</div>
+                    </div>
+                    <div class="feature-card glass-glow">
+                        <div class="feature-icon"><i class="fas fa-lock"></i></div>
+                        <div class="feature-title">SSL Validation</div>
+                        <div class="feature-desc">Verify SSL certificates and detect malicious certificate implementations.</div>
+                    </div>
+                    <div class="feature-card glass-glow">
+                        <div class="feature-icon"><i class="fas fa-list-check"></i></div>
+                        <div class="feature-title">Blacklist Comparison</div>
+                        <div class="feature-desc">Cross-reference against global threat databases and malware blacklists.</div>
+                    </div>
+                    <div class="feature-card glass-glow">
+                        <div class="feature-icon"><i class="fas fa-expand"></i></div>
+                        <div class="feature-title">Short-URL Expansion</div>
+                        <div class="feature-desc">Expand shortened URLs to reveal hidden phishing destinations.</div>
+                    </div>
+                    <div class="feature-card glass-glow">
+                        <div class="feature-icon"><i class="fas fa-bolt"></i></div>
+                        <div class="feature-title">Real-Time Predictions</div>
+                        <div class="feature-desc">Get instant threat verdicts with sub-second analysis time.</div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="about" id="about">
+                <h2 class="section-title">About <span>PhishGuard</span></h2>
+                <div class="about-content">
+                    <div class="about-text">
+                        PhishGuard AI is a cybersecurity platform designed to combat phishing attacks with artificial intelligence, combining deep learning and real-time threat intelligence for URL analysis. The system focuses on accurate, fast decisions while maintaining strong encryption and privacy-conscious design.
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <footer>
+            <div class="footer-links">
+                <a href="#">GitHub</a>
+                <a href="#">Twitter</a>
+                <a href="#">LinkedIn</a>
+                <a href="#">Support</a>
+            </div>
+            <p>&copy; 2025 PhishGuard AI. All rights reserved. | Advanced Cybersecurity Intelligence</p>
+        </footer>
+    </div>
+
+    <div id="page-scanner" class="page-section">
+        <header>
+            <div class="header-container">
+                <div class="logo" onclick="navigateTo('landing')">PhishGuard</div>
+                <nav>
+                    <button onclick="navigateTo('landing')">Home</button>
+                    <button onclick="navigateTo('dashboard')">Dashboard</button>
+                    <button class="login-btn" onclick="navigateTo('login')">Login</button>
+                </nav>
+            </div>
+        </header>
+
+        <form class="scanner-container" method="post" action="/scan" onsubmit="event.preventDefault(); scanURL();">
+            <div class="scanner-box float-up">
+                <h1 class="scanner-title"><span>URL</span> Scanner</h1>
+
+                <div class="scanner-content">
+                    <div class="input-group">
+                        <input type="text" class="url-input" id="urlInput" placeholder="Enter URL to scan (e.g., https://example.com)" required>
+                        <button type="submit" class="scan-btn">
+                            <i class="fas fa-shield-alt"></i> SCAN
+                        </button>
+                    </div>
+
+                    <div class="spinner" id="spinner"></div>
+
+                    <div class="result" id="result">
+                        <div class="result-header">
+                            <div class="result-icon" id="resultIcon"></div>
+                            <div class="result-title" id="resultTitle"></div>
+                        </div>
+
+                        <div class="result-message" id="resultMessage"></div>
+                        <div class="result-details" id="resultDetails"></div>
+                    </div>
+                </div>
+            </div>
+        </form>
+
+        <footer>
+            <div class="footer-links">
+                <a href="#">GitHub</a>
+                <a href="#">Twitter</a>
+                <a href="#">LinkedIn</a>
+                <a href="#">Support</a>
+            </div>
+            <p>&copy; 2025 PhishGuard AI. All rights reserved.</p>
+        </footer>
+    </div>
+
+    <div id="page-login" class="page-section">
+        <canvas id="matrixCanvas"></canvas>
+        <div class="grid"></div>
+        <div class="shield"></div>
+
+        <div class="login-container">
+            <div class="login-card">
+                <div class="logo-text">PHISHGUARD</div>
+                <div class="logo-subtitle">ADVANCED THREAT INTELLIGENCE</div>
+                
+                <div class="tab-switch">
+                    <button class="tab-btn active" onclick="switchLoginTab('login')">LOGIN</button>
+                    <button class="tab-btn" onclick="switchLoginTab('signup')">SIGN UP</button>
+                </div>
+
+                <div id="loginForm" class="form-container">
+                    <div class="form-group">
+                        <label>Email Address</label>
+                        <input type="email" id="loginEmail" placeholder="name@company.com">
+                        <div class="error-text" id="loginEmailError"></div>
+                    </div>
+                    <div class="form-group">
+                        <label>Password</label>
+                        <div class="input-wrapper">
+                            <input type="password" id="loginPassword" placeholder="Enter password">
+                            <button class="password-toggle" onclick="togglePassword('loginPassword')"><i class="fas fa-eye"></i></button>
+                        </div>
+                        <div class="error-text" id="loginPasswordError"></div>
+                    </div>
+                    <button class="submit-btn" onclick="handleLogin()">LOGIN</button>
+                    <div class="divider"><span>Or continue with</span></div>
+                    <div class="social-login">
+                        <button class="social-btn" onclick="socialLogin('Google')"><i class="fab fa-google"></i> Google</button>
+                        <button class="social-btn" onclick="socialLogin('GitHub')"><i class="fab fa-github"></i> GitHub</button>
+                    </div>
+                    <div class="footer-text">Don't have an account? <a onclick="switchLoginTab('signup')">Sign Up</a></div>
+                    <div class="footer-text" style="margin-top:10px;"><a onclick="navigateTo('landing')">Back to Home</a></div>
+                </div>
+
+                <div id="signupForm" class="form-container hidden">
+                    <div class="form-group">
+                        <label>Full Name</label>
+                        <input type="text" id="signupName" placeholder="John Doe">
+                        <div class="error-text" id="signupNameError"></div>
+                    </div>
+                    <div class="form-group">
+                        <label>Email Address</label>
+                        <input type="email" id="signupEmail" placeholder="name@company.com">
+                        <div class="error-text" id="signupEmailError"></div>
+                    </div>
+                    <div class="form-group">
+                        <label>Password</label>
+                        <div class="input-wrapper">
+                            <input type="password" id="signupPassword" placeholder="Min 8 chars">
+                            <button class="password-toggle" onclick="togglePassword('signupPassword')"><i class="fas fa-eye"></i></button>
+                        </div>
+                        <div class="error-text" id="signupPasswordError"></div>
+                    </div>
+                    <button class="submit-btn" onclick="handleSignup()">CREATE ACCOUNT</button>
+                    <div class="footer-text">Already a member? <a onclick="switchLoginTab('login')">Login</a></div>
+                    <div class="footer-text" style="margin-top:10px;"><a onclick="navigateTo('landing')">Back to Home</a></div>
+                </div>
+
+                <div id="otpContainer" class="hidden">
+                    <div class="otp-title"><h2>SECURITY VERIFICATION</h2></div>
+                    <p style="text-align: center; color: rgba(255,255,255,0.7); margin-bottom: 20px;">Enter the code sent to <span id="otpEmailDisplay" style="color: #3DFF3D;"></span></p>
+                    <div class="otp-inputs">
+                        <input type="text" class="otp-input" maxlength="1" onkeyup="handleOtpInput(this, 0)">
+                        <input type="text" class="otp-input" maxlength="1" onkeyup="handleOtpInput(this, 1)">
+                        <input type="text" class="otp-input" maxlength="1" onkeyup="handleOtpInput(this, 2)">
+                        <input type="text" class="otp-input" maxlength="1" onkeyup="handleOtpInput(this, 3)">
+                    </div>
+                    <button class="submit-btn" onclick="handleOtpVerify()">VERIFY IDENTITY</button>
+                    <div class="error-text" id="otpError" style="text-align: center;"></div>
+                    <div class="footer-text">
+                        Resend code in <span id="otpTimer" style="color: #3DFF3D;">60s</span><br>
+                        <button id="resendBtn" class="submit-btn" style="margin-top:10px; padding:8px; font-size:0.8rem;" onclick="initOTP()" disabled>Resend OTP</button>
+                    </div>
+                </div>
+
+                <div id="successMessage" class="hidden success-message">
+                    <div class="success-icon"><i class="fas fa-shield-check"></i></div>
+                    <h2 class="logo-text" style="font-size: 1.5rem; margin-bottom: 10px;">ACCESS GRANTED</h2>
+                    <p style="color: rgba(255,255,255,0.7); margin-bottom: 30px;">Welcome to PhishGuard AI environment.</p>
+                    <button class="submit-btn" onclick="navigateTo('dashboard')">PROCEED TO DASHBOARD</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="page-dashboard" class="page-section dashboard-header">
+        <header>
+            <div class="header-container">
+                <div class="logo" onclick="navigateTo('landing')">PHISHGUARD</div>
+                <nav>
+                    <button onclick="navigateTo('landing')">Home</button>
+                    <button onclick="scrollToId('dashboard-start')">Overview</button>
+                    <button onclick="scrollToId('analytics-view')">Analytics</button>
+                </nav>
+                <div class="header-controls">
+                    <button class="icon-btn"><i class="fas fa-bell"></i></button>
+                    <button class="icon-btn"><i class="fas fa-cog"></i></button>
+                    <button class="icon-btn"><i class="fas fa-user-circle"></i></button>
+                </div>
+            </div>
+        </header>
+
+        <div class="dashboard-container" id="dashboard-start">
+            <div class="kpi-section">
+                <div class="kpi-card">
+                    <div class="kpi-icon"><i class="fas fa-search"></i></div>
+                    <div class="kpi-label">Total Scans Today</div>
+                    <div class="kpi-value">2,547</div>
+                    <div class="kpi-subtext">↑ 23% from yesterday</div>
+                </div>
+                <div class="kpi-card">
+                    <div class="kpi-icon"><i class="fas fa-exclamation-triangle"></i></div>
+                    <div class="kpi-label">Detected Threats</div>
+                    <div class="kpi-value">147</div>
+                    <div class="kpi-subtext">Blocked automatically</div>
+                </div>
+                <div class="kpi-card">
+                    <div class="kpi-icon"><i class="fas fa-shield-alt"></i></div>
+                    <div class="kpi-label">Safe URLs</div>
+                    <div class="kpi-value">2,400</div>
+                    <div class="kpi-subtext">Verified secure</div>
+                </div>
+                <div class="kpi-card">
+                    <div class="kpi-icon"><i class="fas fa-brain"></i></div>
+                    <div class="kpi-label">AI Accuracy</div>
+                    <div class="kpi-value">98.7%</div>
+                    <div class="gauge-meter"><div class="gauge-fill" style="width: 98.7%;"></div></div>
+                </div>
+                <div class="kpi-card">
+                    <div class="kpi-icon"><i class="fas fa-tachometer-alt"></i></div>
+                    <div class="kpi-label">Avg Response Time</div>
+                    <div class="kpi-value">240ms</div>
+                    <div class="kpi-subtext">Lightning fast</div>
+                </div>
+                <div class="kpi-card">
+                    <div class="kpi-icon"><i class="fas fa-globe"></i></div>
+                    <div class="kpi-label">Global Threat Level</div>
+                    <div class="kpi-value">42/100</div>
+                    <div class="gauge-meter"><div class="gauge-fill" style="width: 42%;"></div></div>
+                </div>
+            </div>
+
+            <div class="analytics-section" id="analytics-view">
+                <div class="chart-card">
+                    <div class="chart-title">Daily Scans vs Threats</div>
+                    <div class="chart-container"><canvas id="lineChart"></canvas></div>
+                </div>
+                <div class="chart-card">
+                    <div class="chart-title">URL Classification</div>
+                    <div class="chart-container"><canvas id="pieChart"></canvas></div>
+                </div>
+                <div class="chart-card">
+                    <div class="chart-title">Top Threat Origins</div>
+                    <div class="chart-container"><canvas id="barChart"></canvas></div>
+                </div>
+            </div>
+
+            <div class="history-section">
+                <div class="history-title">Recent Scan History</div>
+                <div class="table-wrapper">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>URL</th>
+                                <th>Status</th>
+                                <th>Risk Score</th>
+                                <th>Country</th>
+                                <th>Date & Time</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>https://example.com/login</td>
+                                <td><span class="status-safe">✓ SAFE</span></td>
+                                <td><div class="score-bar"><div class="score-fill" style="width: 15%;"></div></div></td>
+                                <td>United States</td>
+                                <td>2025-12-05 14:30</td>
+                                <td><i class="fas fa-eye" style="cursor: pointer; color: #3DFF3D;"></i></td>
+                            </tr>
+                            <tr>
+                                <td>https://phish-bank.tk/verify</td>
+                                <td><span class="status-threat">✗ THREAT</span></td>
+                                <td><div class="score-bar"><div class="score-fill" style="width: 95%;"></div></div></td>
+                                <td>Russia</td>
+                                <td>2025-12-05 14:15</td>
+                                <td><i class="fas fa-eye" style="cursor: pointer; color: #3DFF3D;"></i></td>
+                            </tr>
+                            <tr>
+                                <td>https://secure-payment.site</td>
+                                <td><span class="status-warning">⚠ WARNING</span></td>
+                                <td><div class="score-bar"><div class="score-fill" style="width: 65%;"></div></div></td>
+                                <td>China</td>
+                                <td>2025-12-05 14:00</td>
+                                <td><i class="fas fa-eye" style="cursor: pointer; color: #3DFF3D;"></i></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <footer><p>&copy; 2025 PhishGuard AI. All rights reserved.</p></footer>
+    </div>
+
+    <script src="script.js"></script>
+    </body>
+</html>
