@@ -9,17 +9,15 @@ Built with Python, Flask, scikit-learn, TF-IDF vectorization, and a custom-train
 
 ## 🖼️ Screenshots
 
-Below are sample UI previews of the application in action.
+## Project Screenshots
 
-### 🔹 Screenshot 1 — Home Page
-![Home Page](static/screenshots/screenshot1.png)
+Here are some screenshots of the phishing URL detector in action.
 
-### 🔹 Screenshot 2 — Detection Result Output
-![Result Output](static/screenshots/screenshot2.png)
+![Dashboard View](statics/screenshots/screenshot1.png "Dashboard View")
 
-### 🔹 Screenshot 3 — Detection Result Output
-![Result Output](static/screenshots/screenshot3.png)
+![Analysis Result](statics/screenshots/screenshot2.png "Analysis Result")
 
+![Analysis Result](statics/screenshots/screenshot3.png "Analysis Result")
 ***
 
 ## AI Model Highlights
