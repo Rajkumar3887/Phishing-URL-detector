@@ -7,6 +7,21 @@ Built with Python, Flask, scikit-learn, TF-IDF vectorization, and a custom-train
 
 ***
 
+## 🖼️ Screenshots
+
+Below are sample UI previews of the application in action.
+
+### 🔹 Screenshot 1 — Home Page
+![Home Page](static/screenshots/screenshot1.png)
+
+### 🔹 Screenshot 2 — Detection Result Output
+![Result Output](static/screenshots/screenshot2.png)
+
+### 🔹 Screenshot 3 — Detection Result Output
+![Result Output](static/screenshots/screenshot3.png)
+
+***
+
 ## AI Model Highlights
 
 ### 🚀 AI Model Overview
@@ -82,6 +97,10 @@ Phishing_Email_Detector/
 │  ├─ index.html              # Input page UI
 │  └─ result.html             # Output/result display
 ├─ static/
+│  └─ screenshots/
+│     ├─ screenshot1.png      # Added screenshot 1
+│     ├─ screenshot2.png      # Added screenshot 2
+│     └─ screenshot3.png      # Added screenshot 3
 │  └─ CSS/
 │     └─ style.css            # Custom UI theme
 └─ logs/
@@ -175,7 +194,6 @@ This is a reminder for tomorrow's project discussion at 11 AM.
 ## Credits & License
 
 **Developed by Raj**  
-A portfolio-ready cybersecurity and machine learning project.  
+A portfolio-ready cybersecurity and machine learning project.
 
 ***
-
