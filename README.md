@@ -11,17 +11,19 @@ A machine learning–powered phishing URL detection system that classifies websi
 🌐 Flask backend for predictions
 💻 Clean UI for scanning URLs
 📁 Includes trained models (phishing.pkl, vectorizer.pkl)
-📂 Project Structure
-project/
-│── app.py
-│── requirements.txt
-│── static/
-│── templates/
-│── models/
-│     ├── phishing.pkl
-│     └── vectorizer.pkl
-│── utils/
-│── README.md
+
+
+
+📦 Project Structure 
+● app.py – Flask backend
+● requirements.txt – Dependencies
+● static/ – CSS, JS, images
+● templates/ – HTML pages
+● models/
+● phishing.pkl
+● vectorizer.pkl
+● utils/ – Feature extraction tools
+● README.md – Project documentation
 
 🧠 ML Model Overview
 The detector is trained on thousands of URLs with features such as:
